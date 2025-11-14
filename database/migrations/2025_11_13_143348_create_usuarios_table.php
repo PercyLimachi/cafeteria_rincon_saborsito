@@ -13,9 +13,6 @@ return new class extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id('id_usuario');
-            $table->foreignId('id_persona')
-                ->constrained('personas', 'id_persona')
-                ->onDelete('cascade');
             $table->foreignId('id_rol')
                 ->constrained('roles', 'id_rol')
                 ->onDelete('restrict');

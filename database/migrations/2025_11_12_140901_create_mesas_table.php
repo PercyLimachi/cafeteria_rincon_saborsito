@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_mesa');
             $table->string('numero_mesa', 10)->unique();;
             $table->integer('capacidad');
-            $table->enum('estado', ['disponible', 'ocupada', 'reservada', 'mantenimiento'])->default('disponible');
+            $table->enum('estado', ['disponible', 'ocupada', 'reservada'])->default('disponible');
             $table->boolean('activa')->default(true); // Para desactivar sin eliminar
             $table->string('ubicacion', 50)->nullable();// Terraza, Interior, VIP
             $table->timestamp('fecha_creacion')->useCurrent();

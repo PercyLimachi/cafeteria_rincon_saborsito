@@ -14,20 +14,11 @@ return new class extends Migration
         Schema::create('ventas', function (Blueprint $table) {
             $table->id('id_venta');
             $table->string('numero_venta', 20)->unique();
-            $table->foreignId('id_pedido')
-                ->nullable()
-                ->constrained('pedidos', 'id_pedido')
-                ->onDelete('set null');
-            $table->foreignId('id_cliente')
-                ->nullable()
-                ->constrained('clientes', 'id_cliente')
-                ->onDelete('set null');
             $table->foreignId('id_usuario')
                 ->constrained('usuarios', 'id_usuario')
                 ->onDelete('restrict');
-            $table->enum('tipo_comprobante', ['boleta', 'factura', 'ticket'])->default('boleta');
-            $table->string('serie_comprobante', 10)->nullable();
-            $table->string('numero_comprobante', 20)->nullable();
+            $table->foreignId('id_reserva')
+                ->constrained('reservaciones', 'id_reservacion');
             $table->decimal('subtotal', 10, 2);
             $table->decimal('descuento', 10, 2)->default(0);
             $table->decimal('total', 10, 2);
